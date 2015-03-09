@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>cn.com.sinosoft</groupId>
-	<artifactId>hdcdc</artifactId>
+	<groupId></groupId>
+	<artifactId></artifactId>
 	<version>0.2-alphal</version>
 	<packaging>war</packaging>
-	<name>hdcdc</name>
-	<description>海淀区疾病预防管理系统</description>
+	<name></name>
+	<description></description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- <org.springframework.version>3.2.11.RELEASE</org.springframework.version> -->
