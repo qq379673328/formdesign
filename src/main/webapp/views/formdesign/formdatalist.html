@@ -1,0 +1,30 @@
+<h1 ng-show="formtitle">
+{{formtitle}}
+-
+{{formdtcreate | date : 'yyyy年MM月dd日 hh时mm分ss秒' }} 发布
+</h1>
+<br />
+<table class="table">
+	<thead>
+		<tr>
+			<th></th>
+			<th>上报时间</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tr ng-show="!formdatas"><td colspan="4">加载中...</td></tr>
+	<tr ng-repeat="formdata in formdatas">
+		<td>{{ (pageConf.currentPage - 1) * pageConf.itemsPerPage + $index + 1 }}</td>
+		<td>{{ formdata.dt_create | date : 'yyyy-MM-dd hh:mm:ss ' }}</td>
+		<td class="handle">
+			<a class="btn btn-small btn-info" 
+				target="_blank" 
+				href="formdesign/formdataview/{{ formdata.id }}">查看</a>
+			<a class="btn btn-small btn-danger"
+				ng-click="del(formdata.id);formdata.isdeling=true"
+				ng-class="{true:'disabled'}[formdata.isdeling]"
+				>删除</a>
+		</td>
+	<tr>
+</table>
+<div fpage conf="pageConf"></div>

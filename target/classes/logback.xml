@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="180 seconds">
+	<contextName>hdcdc</contextName>
+	<substitutionProperty name="log.base" value="./logs" />
+	
+	<!-- 控制台输出 -->
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<withJansi>false</withJansi>
+		<encoder charset="utf-8">
+			<pattern>
+				[%level] %d{HH:mm:ss.SSS} [%thread] -%msg%n %caller{1}
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 控制台滚动数据日志文件 -->
+	<appender name="all.info"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.base}/console.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${log.base}/info/log.all.info.%i.log</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>20</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>10MB</maxFileSize>
+		</triggeringPolicy>
+		<encoder charset="UTF-8">
+			<pattern>%date %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+          <level>info</level>
+        </filter>
+	</appender>
+	 
+	<!-- 错误日志记录 -->
+	<appender name="all.error"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<Encoding>UTF-8</Encoding>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/error/log.all.error.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<MaxHistory>60</MaxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} -
+				%msg%n
+            </pattern>
+		</layout>
+	 
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>20MB</MaxFileSize>
+		</triggeringPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+          <level>ERROR</level>
+          <onMatch>ACCEPT</onMatch>
+          <onMismatch>DENY</onMismatch>
+        </filter>
+	</appender>
+	
+	<logger name="com.mchange.v2.resourcepool" level="WARN"/>
+	<logger name="org.hibernate.loader" level="WARN"/>
+	<logger name="org.hibernate.persister" level="WARN"/>
+	<logger name="net.sf.ehcache" level="WARN"/>
+	
+	<root level="debug">
+		<appender-ref ref="all.info" level="debug" />
+		<appender-ref ref="all.error" level="error"/>
+		<appender-ref ref="stdout" level="debug" />
+	</root>
+</configuration>

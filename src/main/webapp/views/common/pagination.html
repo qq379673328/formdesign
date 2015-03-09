@@ -1,0 +1,22 @@
+<div>{{ tableParams }} {{count}}</div>
+<table>
+	<tr ng-repeat="row in rows">
+		<td ng-repeat="col in cols"></td>
+		<td ng-repeat="btn in buttons">
+			<a class="btn btn-small btn-info" ng-click="btn.click(row);">{{ btn.name }}</a>
+		</td>
+	<tr>
+</table>
+<ul class="pagination">
+	<li ng-class="{true:'active'}[page==1]"><a
+		href="javascript:void(0)" ng-click="page=1;reload(1)">首页</a>
+	</li>
+	<li ng-class="{true:'disabled'}[page==1]"><a
+		href="javascript:void(0);" ng-click="reload(page-1)">上一页</a>
+	</li>
+	<li ng-class="{true:'disabled'}[page==totalPage]"><a
+		href="javascript:void(0);" ng-click="reload(page+1)">下一页</a></li>
+	<li ng-class="{true:'active'}[page==totalPage]"><a
+		href="javascript:void(0)" ng-click="page=totalPage;reload()">末页</a>
+	</li>
+</ul>

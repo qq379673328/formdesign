@@ -1,0 +1,26 @@
+<div class="formdesign">
+	<form id="saveform" method="post">
+		<div class="design-control-place"></div>
+		<div class="design-control">
+			<ul>
+				<li>表单控件</li>
+				<li><a href="javascript:void(0);" ng-click="exec('text');" class="btn btn-info">文本框</a></li>
+				<li><a href="javascript:void(0);" ng-click="exec('textarea');" class="btn btn-info">多行文本</a></li>
+				<li><a href="javascript:void(0);" ng-click="exec('select');" class="btn btn-info">下拉菜单</a></li>
+				<li><a href="javascript:void(0);" ng-click="exec('radios');" class="btn btn-info">单选框</a></li>
+				<li><a href="javascript:void(0);" ng-click="exec('checkboxs');" class="btn btn-info">复选框</a></li>
+			</ul>
+		</div>
+		<div>
+			<button class="btn btn-danger" ng-click="save();">保存</button>
+			<button class="btn btn-success" ng-click="preview()">预览</button>
+		</div>
+		<h1 class="formdesign-title">标题 <input ng-model="title"/></h1>
+	</form>
+	<!-- 加载编辑器的容器 -->
+	<div id="formdesigncontainer" class="design-content"></div>
+	<div class="design-zone" ng-show="isDesignZoneActive">
+		<button class="btn btn-danger btn-small" ng-click="isDesignZoneActive = false; designZone = null;">X</button>
+		<div class="formdesign-preview" ng-bind-html="designZone | trustHtml" ></div>
+	</div>
+</div>

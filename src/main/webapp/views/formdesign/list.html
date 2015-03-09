@@ -1,0 +1,40 @@
+<a class="btn btn-success" href="#formdesignedit">设计新表单</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th></th>
+			<th>标题</th>
+			<th>创建时间</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tr ng-show="!forms"><td colspan="4">加载中...</td></tr>
+	<tr ng-repeat="form in forms">
+		<td>{{ (pageConf.currentPage - 1) * pageConf.itemsPerPage + $index + 1 }}</td>
+		<td>{{ form.title }}</td>
+		<td>{{ form.dt_create | date : 'yyyy-MM-dd hh:mm:ss ' }}</td>
+		<td class="handle">
+			<a class="btn btn-small btn-info" href="#formdesignedit/{{ form.id }}">设计</a>
+			<a class="btn btn-small btn-success" 
+				ng-show="form.is_pub==0"
+				ng-click="pub(form.id);form.ispubing=true;"
+				ng-class="{true:'disabled'}[form.ispubing]"
+				>发布</a>
+			<a class="btn btn-small btn-primary" 
+				ng-show="form.is_pub==1"
+				ng-click="canclepub(form.id);form.iscancleing=true;" 
+				ng-class="{true:'disabled'}[form.iscancleing]"
+				>撤销发布</a>
+			<a class="btn btn-small btn-danger" 
+				ng-click="del(form.id);form.isdeling=true"
+				ng-class="{true:'disabled'}[form.isdeling]"
+				>删除</a>
+			<a class="btn btn-small btn-info" 
+				ng-show="form.is_pub==1" target="_blank"
+				href="formdesign/formdatainput/{{ form.id }}">数据录入</a>
+			<a class="btn btn-small btn-success" 
+				href="#formdatalist/{{ form.id }}">数据浏览 | {{ form.cou }}</a>
+		</td>
+	<tr>
+</table>
+<div fpage conf="pageConf"></div>

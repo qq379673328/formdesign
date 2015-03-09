@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-3-4 10:00:22 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.com.sinosoft.formdesign.model.TFormdesignFormdata" table="t_formdesign_formdata" catalog="formdesign">
+        <id name="id" type="string">
+            <column name="id" length="40" />
+            <generator class="assigned" />
+        </id>
+        <property name="formId" type="string">
+            <column name="form_id" length="40" not-null="true">
+                <comment>&#177;&#237;&#181;&#165;id</comment>
+            </column>
+        </property>
+        <property name="formData" type="binary">
+            <column name="form_data" not-null="true">
+                <comment>&#177;&#237;&#181;&#165;&#196;&#218;&#200;&#221;</comment>
+            </column>
+        </property>
+        <property name="dtCreate" type="timestamp">
+            <column name="dt_create" length="19" not-null="true">
+                <comment>&#180;&#180;&#189;&#168;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+        <property name="dtUpdate" type="timestamp">
+            <column name="dt_update" length="19" not-null="true">
+                <comment>&#184;&#252;&#208;&#194;&#200;&#213;&#198;&#218;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
